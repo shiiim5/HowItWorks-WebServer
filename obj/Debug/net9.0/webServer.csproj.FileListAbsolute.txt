@@ -1,0 +1,14 @@
+/home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/bin/Debug/net9.0/webServer
+/home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/bin/Debug/net9.0/webServer.deps.json
+/home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/bin/Debug/net9.0/webServer.runtimeconfig.json
+/home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/bin/Debug/net9.0/webServer.dll
+/home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/bin/Debug/net9.0/webServer.pdb
+/home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/obj/Debug/net9.0/webServer.GeneratedMSBuildEditorConfig.editorconfig
+/home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/obj/Debug/net9.0/webServer.AssemblyInfoInputs.cache
+/home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/obj/Debug/net9.0/webServer.AssemblyInfo.cs
+/home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/obj/Debug/net9.0/webServer.csproj.CoreCompileInputs.cache
+/home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/obj/Debug/net9.0/webServer.dll
+/home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/obj/Debug/net9.0/refint/webServer.dll
+/home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/obj/Debug/net9.0/webServer.pdb
+/home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/obj/Debug/net9.0/webServer.genruntimeconfig.cache
+/home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/obj/Debug/net9.0/ref/webServer.dll
