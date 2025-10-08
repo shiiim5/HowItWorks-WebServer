@@ -2,9 +2,10 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using webServer;
 
 
-IPAddress ip = IPAddress.Parse("127.0.0.1");
+IPAddress ip = IPAddress.Any;
         int port = 8000;
         IPEndPoint endPoint = new IPEndPoint(ip,port);
 
@@ -23,12 +24,22 @@ while (true)
     byte[] buffer = new byte[1024];
     int recievedBytes = clientSocket.Receive(buffer);
     string requestText = Encoding.UTF8.GetString(buffer, 0, recievedBytes);
-    Console.WriteLine("Request: \n" + requestText);
+    Console.WriteLine("Request: \n\n\n" + requestText);
 
+    //parsing request
+   var request = HttpRequestParser.Parse(requestText);
+   Console.WriteLine("Method: \n\n" + request.Method);
+   Console.WriteLine("Path: \n\n" + request.Path);
+   Console.WriteLine("HttpVersion: \n\n" + request.HttpVersion);
+   Console.WriteLine("Content-Length: \n\n" + request.Headers["Content-Length"]);
+   Console.WriteLine("Body: \n\n" + request.Body);
+
+
+
+   
+   
     //response to client
     string responseText = "HTTP/1.1 200 OK\r\n Content-Type: text/plain\r\n\n<html><body><h1>Hello from my web server!</h1></body></html>";
-    //string responseText = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\nHello from raw C# server!";
-    //
     byte[] responseBytes = Encoding.UTF8.GetBytes(responseText);
     clientSocket.Send(responseBytes);
 

@@ -12,3 +12,4 @@
 /home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/obj/Debug/net9.0/webServer.pdb
 /home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/obj/Debug/net9.0/webServer.genruntimeconfig.cache
 /home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/obj/Debug/net9.0/ref/webServer.dll
+/home/shimaa/Projects/dotnet/HowItWorks/HowItWorks-WebServer/webServer/obj/Debug/net9.0/webServer.sourcelink.json
