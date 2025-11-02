@@ -20,6 +20,22 @@ namespace webServer
                 request.HttpVersion = requestLineParts[2];
             }
 
+            if (request.Path.Contains('?'))
+            {
+                string[] pathParts = request.Path.Split('?');
+                request.Path = pathParts[0];
+                string queryString = pathParts[1];
+                var queryParams = queryString.Split('&', StringSplitOptions.RemoveEmptyEntries);
+                foreach(var param in queryParams)
+                {
+                    string[] keyValues = param.Split('=');
+                    if (keyValues.Length == 2)
+                    {
+                        request.QueryStrings[keyValues[0]] = keyValues[1];
+                    }
+                }
+            }
+
             int i = 1;
             for (; i < lines.Length; i++)
             {

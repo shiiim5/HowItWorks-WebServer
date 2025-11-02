@@ -11,6 +11,7 @@ router.Register("Get","/time",(req)=> new HttpResponse { Body = $"<html><body><h
 router.Register("Get","/numbers/{number}",GetNumber);
 router.Register("Get","/words/{word}",GetWord);
 router.Register("Post","/submit",login);
+router.Register("Get","/search",Search);
 
 
 startServer(router);
@@ -112,12 +113,24 @@ static HttpResponse GetWord(HttpRequest request)
     string word = request.Variables["word"];
     return new HttpResponse
     {
-        Body= $"<html><body><h1>Word is {word}</h1></body></html>"
+        Body = $"<html><body><h1>Word is {word}</h1></body></html>"
 
     };
-    
 
 
+
+}
+
+static HttpResponse Search(HttpRequest request)
+{
+    string keyword = request.QueryStrings.ContainsKey("keyword") ? request.QueryStrings["keyword"] : "none";
+    string limit = request.QueryStrings.ContainsKey("limit") ? request.QueryStrings["limit"] : "10";
+
+    return new HttpResponse
+    {
+        Body = $"<html><body><h1>Search Results for '{keyword}' with limit {limit}</h1></body></html>"
+
+    };
 }
 
 

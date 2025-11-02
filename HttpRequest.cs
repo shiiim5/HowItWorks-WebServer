@@ -10,7 +10,9 @@ namespace webServer
         public string Method { get; set; }
         public string Path { get; set; }
 
-        public Dictionary<string,string> Variables { get; set; } = new();
+        public Dictionary<string, string> Variables { get; set; } = new();
+        public Dictionary<string, string> QueryStrings { get; set; } = new();
+        
         public string HttpVersion { get; set; }
         public Dictionary<string, string> Headers { get; set; } = new();
         public string Body { get; set; }
