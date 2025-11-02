@@ -11,7 +11,7 @@ namespace webServer
         public int StatusCode { get; set; } = 200;
         public string StatusMessage { get; set; } = "OK";
         public string ContentType { get; set; }= "text/html";
-        public string Body { get; set; }= "<html><body><h1>Hello from my web server!</h1></body></html>";
+        public string Body { get; set; }= "";
 
         public byte[] ToBytes()
         {

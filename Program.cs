@@ -8,9 +8,13 @@ using webServer;
 var router = new Router();
 router.Register("Get","/",(req)=> new HttpResponse { Body = "<html><body><h1>Hello from my web server - Home Page!</h1></body></html>" });
 router.Register("Get","/time",(req)=> new HttpResponse { Body = $"<html><body><h1>{DateTime.Now.ToString()}</h1></body></html>" });
-router.Register("Post","/submit",(req)=> new HttpResponse { Body = $"<html><body><h1>{req.Body}</h1></body></html>" });
+router.Register("Get","/numbers/{number}",GetNumber);
+router.Register("Get","/words/{word}",GetWord);
+router.Register("Post","/submit",login);
+
 
 startServer(router);
+
 
 
 static void startServer(Router router)
@@ -40,6 +44,9 @@ static void startServer(Router router)
         //parsing request
         var request = HttpRequestParser.Parse(requestText);
 
+        Console.WriteLine("Requested path: \n\n\n" + request.Path);
+
+
 
 
 
@@ -47,8 +54,14 @@ static void startServer(Router router)
 
         //routing and response to client
         var responseText = router.HandleRequest(request);
+        Console.WriteLine("======================================================= \n\n\n");
+
+
 
         clientSocket.Send(responseText.ToBytes());
+        
+        Console.WriteLine($"status: {responseText.StatusCode}, {responseText.StatusMessage} \n\n\n");
+
 
         clientSocket.Shutdown(SocketShutdown.Both);
         clientSocket.Close();
@@ -59,3 +72,52 @@ static void startServer(Router router)
 
 
 }
+
+static HttpResponse login(HttpRequest request)
+{
+
+
+    string credentials = request.Body;
+    string userName = credentials.Split('&')[0].Split('=')[1];
+    string password = credentials.Split('&')[1].Split('=')[1];
+
+    if (password == "123")
+        return new HttpResponse { Body = $"<html><body><h1></h1>Hello {userName}</body></html>" };
+    else
+        return new HttpResponse
+        {
+            StatusCode = 401,
+            StatusMessage = "Unauthorized",
+            ContentType = "text/plain",
+            Body = "Unauthorized"
+        };
+
+}
+
+static HttpResponse GetNumber(HttpRequest request)
+{
+    string number = request.Variables["number"];
+    return new HttpResponse
+    {
+        Body = $"<html><body><h1>Number is {number}</h1></body></html>"
+
+    };
+
+
+
+}
+
+static HttpResponse GetWord(HttpRequest request)
+{
+    string word = request.Variables["word"];
+    return new HttpResponse
+    {
+        Body= $"<html><body><h1>Word is {word}</h1></body></html>"
+
+    };
+    
+
+
+}
+
+
