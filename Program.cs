@@ -12,6 +12,8 @@ router.Register("Get","/numbers/{number}",GetNumber);
 router.Register("Get","/words/{word}",GetWord);
 router.Register("Post","/submit",login);
 router.Register("Get","/search",Search);
+router.Register("Get","/form.html",ServeStaticFile);
+router.Register("Get","/cat.jpeg",ServeImages);
 
 
 startServer(router);
@@ -59,7 +61,15 @@ static void startServer(Router router)
 
 
 
-        clientSocket.Send(responseText.ToBytes());
+        if(responseText.ContentType.StartsWith("image/") && responseText.RawBody != null)
+        {
+            clientSocket.Send(responseText.ToBytes());
+            clientSocket.Send(responseText.RawBody);
+        }
+        else
+        {
+            clientSocket.Send(responseText.ToBytes());
+        }
         
         Console.WriteLine($"status: {responseText.StatusCode}, {responseText.StatusMessage} \n\n\n");
 
@@ -131,6 +141,60 @@ static HttpResponse Search(HttpRequest request)
         Body = $"<html><body><h1>Search Results for '{keyword}' with limit {limit}</h1></body></html>"
 
     };
+}
+
+static HttpResponse ServeStaticFile(HttpRequest request)
+{
+    string filePath = "../" + request.Path;
+
+    if (File.Exists(filePath))
+    {
+        string content = File.ReadAllText(filePath);
+        return new HttpResponse
+        {
+            Body = content,
+            ContentType = "text/html"
+        };
+    }
+    else
+    {
+        return new HttpResponse
+        {
+            StatusCode = 404,
+            StatusMessage = "Not Found",
+            Body = "File Not Found"
+        };
+    }
+}
+
+static HttpResponse ServeImages(HttpRequest request)
+{
+    string imagePath = "wwwroot/" + request.Path;
+     if (File.Exists(imagePath))
+    {
+        byte[] imageBytes = File.ReadAllBytes(imagePath);
+
+         return new HttpResponse
+    {
+        StatusCode = 200,
+        StatusMessage = "OK",
+        RawBody = imageBytes,
+        ContentType = "image/jpeg"
+
+    };
+    }
+    else
+    {
+        return new HttpResponse
+        {
+            StatusCode = 404,
+            StatusMessage = "Not Found",
+            Body = "Image Not Found"
+        };
+    }
+   
+
+   
 }
 
 

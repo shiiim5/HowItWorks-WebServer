@@ -8,10 +8,13 @@ namespace webServer
 {
     public class HttpResponse
     {
+        
         public int StatusCode { get; set; } = 200;
         public string StatusMessage { get; set; } = "OK";
         public string ContentType { get; set; }= "text/html";
-        public string Body { get; set; }= "";
+        public string Body { get; set; } = "";
+        
+        public byte[]? RawBody { get; set; }
 
         public byte[] ToBytes()
         {
@@ -22,6 +25,6 @@ namespace webServer
     Body;
 
             return Encoding.UTF8.GetBytes(response);
-  }
+        }
     }
 }
